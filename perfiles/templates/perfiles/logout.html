@@ -1,0 +1,31 @@
+
+
+
+
+<style>
+  body {
+    background-color: floralwhite;
+  }
+  a {
+    text-decoration: none;
+    color: rgb(70, 69, 69);
+  }
+  a:hover {
+    color: rgb(70, 69, 69);
+    text-decoration: underline;
+  }
+</style>
+<div style="width: 100%; display: flex; align-items: center; font-family: Arial, Helvetica, sans-serif; flex-direction: column;">
+  <h1>Vuelve pronto</h1>
+  
+  <p>
+    Te esperamos para que crees más artículos y los compartas con la comunidad.
+  </p>
+
+  <a href="{% url 'inicio' %}">
+    <button style="margin-top: 20px; padding: 10px; border: none; border-radius: 5px; background-color: rgb(70, 69, 69); color: white; font-weight: bold; cursor: pointer;">
+      Ir a inicio
+    </button>
+  </a>
+
+</div>

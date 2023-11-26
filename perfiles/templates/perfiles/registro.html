@@ -1,0 +1,48 @@
+
+<style>
+  body {
+    background-color: floralwhite;
+  }
+  input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+  }
+  input[type=submit] {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+  }
+
+  input[type=submit]:hover {
+    background-color: #333533;
+    color: #fff;
+  }
+
+</style>
+<div style="width: 100%; display: flex; align-items: center; font-family: Arial, Helvetica, sans-serif; flex-direction: column;">
+  <form method="post">
+    {% csrf_token %}
+    {{ formulario.as_p }}
+    {{ formulario.errors }}
+    <input type="submit" value="Crear cuenta" />
+  </form>
+  <a href="{% url 'login' %}">
+    <button style="padding: 10px; border: none; border-radius: 5px; background-color: rgb(70, 69, 69); color: white; font-weight: bold; cursor: pointer;">
+      Volver
+    </button>
+  </a>
+</div>
+

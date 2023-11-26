@@ -1,0 +1,88 @@
+
+
+<style>
+  body {
+    background-color: floralwhite;
+  }
+  a {
+    text-decoration: none;
+    color: rgb(70, 69, 69);
+  }
+  a:hover {
+    color: rgb(70, 69, 69);
+    text-decoration: underline;
+  }
+</style>
+<div style="width: 100%; display: flex; align-items: center; font-family: Arial, Helvetica, sans-serif; flex-direction: column;">
+  <div style="display: flex; justify-content: space-between;">
+    
+    
+    {% if userIsAuthenticated %}
+      <div style="display: flex; flex-direction: column;">
+        <h3 style="margin-top: 15px; margin-right: 50px;">Bienvenido, {{ user.username }}</h3>
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+          <input type="submit" value="Cerrar sesión" style="padding: 5px; border: none; border-radius: 5px; background-color: rgb(103, 30, 30); color: white; cursor: pointer; margin-top: 15PX;"/>
+        </form>
+      </div>
+
+    {% else %}
+      <h2 style="margin-top: 15px; margin-right: 50px;">Artículos</h2>
+    {% endif %}
+
+    
+
+  </div>
+
+  {% if articulos|length == 0 %}
+    <h3 style="margin-top: 15px;">No hay artículos</h3>
+  
+  {% else %}
+    <ul>
+      {% for articulo in articulos %}
+        <div style="display: flex; justify-content: space-between;">
+          <div style="margin-right: 15px;">
+            <li><b><a href="{% url 'detalle_articulo' articulo.id %}">{{ articulo.titulo }}</a></b></li>
+            <li style="margin-bottom: 15px; color: grey;"><small>{{ articulo.subtitulo }}</small></li>
+          </div>
+
+          {% if articulo.autor.id == user.id %}
+          <div style="margin-left: 15px; display: flex;">
+            <a href="{% url 'editar_articulo' articulo.id %}">
+              <button style="padding: 5px; border: none; border-radius: 5px; background-color: rgb(70, 69, 69); color: white; font-weight: bold; cursor: pointer;">
+                Editar
+              </button>
+            </a>
+            <form action="{% url 'eliminar_articulo' articulo.id %}" method="post">
+              {% csrf_token %}
+              <input type="submit" value="Eliminar" style="padding: 5px; border: none; border-radius: 5px; background-color: rgb(103, 30, 30); color: white; font-weight: bold; cursor: pointer; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;"/>
+            </form>
+          </div>
+          {% endif %}
+
+        </div>
+      {% endfor %}
+  </ul>
+  {% endif %}
+
+
+
+
+  {% if userIsAuthenticated %}
+    <a href="{% url 'nombre_crear_articulo' %}">
+      <button style="margin-top: 20px; padding: 10px; border: none; border-radius: 5px; background-color: rgb(70, 69, 69); color: white; font-weight: bold; cursor: pointer;">
+        Crear artículo
+      </button>
+    </a>
+
+  {% else %}
+    <a href="{% url 'login' %}">
+      <button style="margin-top: 20px; padding: 10px; border: none; border-radius: 5px; background-color: rgb(70, 69, 69); color: white; font-weight: bold; cursor: pointer;">
+        Iniciar sesión
+      </button>
+    </a>
+  {% endif %}
+
+  
+
+</div>

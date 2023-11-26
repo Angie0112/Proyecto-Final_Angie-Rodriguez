@@ -1,0 +1,39 @@
+
+
+<style>
+  body {
+    background-color: floralwhite;
+  }
+  a {
+    text-decoration: none;
+    color: rgb(70, 69, 69);
+  }
+  a:hover {
+    color: rgb(70, 69, 69);
+    text-decoration: underline;
+  }
+</style>
+<div style="width: 100%; display: flex; align-items: center; font-family: Arial, Helvetica, sans-serif; flex-direction: column;">
+  <h1>Bienvenido</h1>
+  
+  <p>
+    Conoce los mejores artículos que tenemos para ti
+  </p>
+
+  <a href="{% url 'articulos' %}">
+    <button style="margin-top: 20px; padding: 10px; border: none; border-radius: 5px; background-color: rgb(70, 69, 69); color: white; font-weight: bold; cursor: pointer;">
+      Ir a todos los artículos
+    </button>
+  </a>
+
+  {% if not userIsAuthenticated %}
+    <a href="{% url 'login' %}">
+      <button style="margin-top: 20px; padding: 10px; border: none; border-radius: 5px; background-color: rgb(70, 69, 69); color: white; font-weight: bold; cursor: pointer;">
+        Iniciar sesión
+      </button>
+    </a>
+  {% endif %}
+
+  
+
+</div>
